@@ -1,22 +1,28 @@
-import pandas 
+import pandas
 import requests
 import shutil
 import os
 from os import path
 
-fn = '/Users/zachcm/Downloads/NEVP_phenology_1.0_scored_20190910.csv'
-destination = '/Users/zachcm/Downloads/NEVP_images/'
-n_images_to_download = 100
+fn = '/Users/tonyodongo/Desktop/Herbarium/NEVP_phenology_1.0_scored_20190910.csv'
+destination = '/Users/tonyodongo/Desktop/Herbarium/NEVP_images/'
+n_images_to_download = 10
 
-data = pandas.DataFrame.from_csv(fn)
+data = pandas.read_csv(fn)
 
 if not os.path.exists(destination):
     os.mkdir(destination)
 
-for url in data['originalurl'][0:n_images_to_download]:
+for i in range(n_images_to_download):
+    url = data['originalurl'][i]
     print(url)
     r = requests.get(url, stream=True)
-    path = "{}{}.jpg".format(destination, url.split('/')[-1])
+    state = data['stateName'][i]
+    family_name = data['family'][i]
+    species_name = data['scientificName'][i]
+    if not os.path.exists(destination + state + '/'):
+        os.mkdir(destination + state + '/')
+    path = "{}.jpg".format(destination + state + '/' + family_name + species_name)
     with open(path, 'wb') as f:
         r.raw.decode_content = True
         shutil.copyfileobj(r.raw, f)
