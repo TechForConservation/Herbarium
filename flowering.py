@@ -5,12 +5,10 @@ import shutil
 
 flowering_dir = '/gpfs/loomis/home.grace/dollar/teo22/project/Herbarium/Train/Flowering/'
 not_flowering_dir = '/gpfs/loomis/home.grace/dollar/teo22/project/Herbarium/Train/Not_Flowering/'
-#filename = './NEVP_out.csv'
+
 filename = '/gpfs/loomis/home.grace/dollar/teo22/project/Herbarium/NEVP_out.csv'
 data = pandas.read_csv(filename)
 
-#images = glob.glob("/gpfs/loomis/home.grace/dollar/teo22/project/Herbarium/NEVP_images/*.jpg")
-#python /gpfs/loomis/home.grace/dollar/teo22/project/
 
 images = glob.glob("./NEVP_images/*.jpg")
 
