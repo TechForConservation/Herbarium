@@ -37,9 +37,7 @@ if not os.path.exists(destination):
     os.mkdir(destination)
 
 num_cores = multiprocessing.cpu_count()
- 
- 
- 
+
 print("numCores = " + str(num_cores))
 
 Parallel(n_jobs=1)(delayed(get_image_and_save)(i) for i in range(n_images_to_download))
